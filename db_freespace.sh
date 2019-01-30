@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REGION=$1
-DBID=vpc1w2-uberretailapi-prod
+DBID=$2
 MINSIZE=10000000000
 
 #linux date
