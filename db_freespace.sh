@@ -36,7 +36,7 @@ if [ "$freesizeint" -lt "$MINSIZE" ]; then
 #Add 10Gb to the existing storage
   NEWSTORAGE=$(($currentstorage + 10))
   echo "Increasing storage size to $NEWSTORAGE"
-  #aws rds modify-db-instance --db-instance-identifier $DBID --allocated-storage $NEWSTORAGE --dry-run
+  aws rds modify-db-instance --db-instance-identifier $DBID --allocated-storage $NEWSTORAGE --region $REGION
 else
   echo "DB size is fine"
 fi
