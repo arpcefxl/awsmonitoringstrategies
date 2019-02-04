@@ -16,7 +16,7 @@ for i in `echo $INSTANCES`; do
 
   if [[ $ALARMS != *"$INSTANCE"* ]]; then
     #Grab the value of the Name tag
-    name=`/usr/local/bin/aws ec2 describe-tags --region us-west-1 --filters "Name=resource-id,Values=$INSTANCE" "Name=key,Values=Name" --query Tags[*].Value`
+    name=`/usr/local/bin/aws ec2 describe-tags --region $REGION --filters "Name=resource-id,Values=$INSTANCE" "Name=key,Values=Name" --query Tags[*].Value`
 
     #Create the new alarm
     #Alarm name uses the name tag value
