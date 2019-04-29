@@ -16,13 +16,13 @@ for i in `echo $INSTANCES`; do
 
   if [[ $ALARMS != *"$INSTANCE"* ]]; then
     #Grab the value of the Name tag
-    name=`/usr/local/bin/aws ec2 describe-tags --region $REGION --filters "Name=resource-id,Values=$INSTANCE" "Name=key,Values=Name" --query Tags[*].Value`
-
+    name=`/usr/local/bin/aws --output text ec2 describe-tags --region $REGION --filters "Name=resource-id,Values=$INSTANCE" "Name=key,Values=Name" --query Tags[*].Value`
     #Create the new alarm
     #Alarm name uses the name tag value
     #SNS topic ARN provided on script command line
+    echo "creating alarms for $INSTANCE named $name"
     /usr/local/bin/aws cloudwatch put-metric-alarm --alarm-name StatusCheckFailed-Alarm_$name --alarm-description "Alarm when StatusCheckFailed metric has a value of one for two periods" --metric-name StatusCheckFailed --namespace AWS/EC2 --statistic Maximum --dimensions Name=InstanceId,Value=$INSTANCE --region $REGION --period 300 --unit Count --evaluation-periods 2 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --alarm-actions $SNSTOPIC --insufficient-data-actions $SNSTOPIC
-    echo "creating alarms for $INSTANCE"
+
   fi
 done
 
