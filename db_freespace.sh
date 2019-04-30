@@ -16,7 +16,8 @@ freesize=`aws --region $REGION cloudwatch get-metric-statistics \
   --end-time $now --period 3600 --namespace AWS/RDS \
   --statistics Average \
   --dimensions Name=DBInstanceIdentifier,Value=$DBID \
-  --query Datapoints[].Average`
+  --query Datapoints[].Average \
+  --output text`
 
 #Convert the output of the free size to an integer for easy comparison
 freesizeint=`echo ${freesize%.*}`
