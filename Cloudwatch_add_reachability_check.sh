@@ -9,7 +9,7 @@ INSTANCES=`/usr/local/bin/aws ec2 describe-instances --region $REGION --output t
 #Executing this once prevents us from running this for every instance
 ALARMS=`/usr/local/bin/aws cloudwatch describe-alarms --alarm-name-prefix StatusCheckFailed-Alarm --state-value OK --output text --region $REGION  --query 'MetricAlarms[].Dimensions[].Value' | tr '\t' '\n'` 
 
-
+#Loop through all instances in the region, so we can test for existing alarms
 for i in `echo $INSTANCES`; do
   INSTANCE=$i
   echo "checking on $INSTANCE"
