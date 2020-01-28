@@ -5,7 +5,7 @@ DBID=$2
 MINSIZE=10000000000
 
 #UNCOMMENT IF YOU ARE RUNNING ON PROPER LINUX
-linux date
+#linux date
 tenminago=`date -u +%FT%TZ -d "10 minutes ago"`
 now=`date -u +%FT%TZ`
 
@@ -34,7 +34,7 @@ if [ "$freesizeint" -lt "$MINSIZE" ]; then
   #Figure out existing storage for DB instance
   currentstorage=`aws rds describe-db-instances \
   --db-instance-identifier $DBID --region $REGION \
-  --query DBInstances[].AllocatedStorage`
+  --query DBInstances[].AllocatedStorage --output text`
 
   #Print out the current provisioned storage
   echo "The current storage size is $currentstorage"
