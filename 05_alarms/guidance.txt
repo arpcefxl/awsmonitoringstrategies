@@ -1,0 +1,3 @@
+Create Billing Alarm/Budget in AWS Console
+ec2 instance action alarms
+script based on db free space (using cli) and command to extend by 10 gb

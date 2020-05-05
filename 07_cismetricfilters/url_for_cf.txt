@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/rewindio/aws-security-hub-CIS-metrics/master/CIS-alarms-cfn.yml

@@ -1,0 +1,1 @@
+Create CloudWatch Event rules in the AWS Console

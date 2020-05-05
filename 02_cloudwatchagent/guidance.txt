@@ -1,0 +1,26 @@
+Install/configure CloudWatch Agent using the AWS Console
+
+Create EC2 IAM role with CloudWatchAgentServerPolicy, and AmazonEC2RoleforSSM attached, name it CloudWatchAgentServerRole
+Create EC2 IAM role with CloudWatchAgentAdminPolicy and AmazonEC2RoleforSSM attached, name it CloudWatchAgentAdminRole
+For on-premises or multi-cloud users, you would also create an IAM user for those resources to access the appropriate services
+Switch to EC2
+Change running instance role to CloudWatchAgentAdminRole
+Start run command, pick AWS-ConfigureAWSPackage
+Choose install, and type AmazonCloudWatchAgent
+Choose instance(s)
+Click Run
+Wait for a few seconds, refresh, then click on view output to verify it worked
+SSH to instance
+execute the following:
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+Answer all questions and verify config placed into SSM
+Switch to run command
+Choose AmazonCloudWatch-ManageAgent (page 4)
+Action->Configure
+In Optional Configuration Location, type AmazonCloudWatch-linux
+Click Run
+Switch To CloudWatch
+takes a little bit
+Click on Metrics, then CWAgent
+At this point, EC2 instance role can be switched to CloudWatchAgentServerRole
+
